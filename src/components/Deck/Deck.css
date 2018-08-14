@@ -1,3 +1,11 @@
+#buttons-panel{
+    background-color: #111111;
+    padding-left: 15px;
+    padding-right: 15px;
+    padding-bottom: 10px;
+    padding-top: 5px;
+    margin-top: -25px; 
+}
 .cards-panel{
     padding: 80px 40px;
     padding-top: 140px;
@@ -11,7 +19,8 @@
 }
 .card {
     background: white;
-    width: 200px;
+    width: 100%;
+    height: auto;
     display: inline-block;
     margin: auto;
     border-radius: 5px;
@@ -22,11 +31,17 @@
 }
 .card__image {
     position: relative;
-    height: 150px;
+    width: inherit;
+    height: inherit;
     border-top-left-radius: 5px;
     border-top-right-radius: 5px;
-    background: url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/195612/barbarian-bg.jpg");
 }
+
+.card__image--img{
+    width: inherit;
+    height: inherit;
+}
+
 .card__unit-stats {
     background: #111111;
     font-weight: 700;

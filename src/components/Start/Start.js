@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 
-import swarsLogo from '../../static/img/swars-logo.svg';
+import swarsLogo from '../../assets/img/swars-logo.svg';
 import './Start.css';
 
 class Start extends Component {

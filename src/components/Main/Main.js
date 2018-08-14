@@ -1,10 +1,9 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
 
 import Deck from '../Deck/Deck';
 import Timer from '../Timer/Timer';
 import './Main.css';
-import swarsLogo from '../../static/img/swars-logo.svg';
+import swarsLogo from '../../assets/img/swars-logo.svg';
 
 
 class Main extends Component {
@@ -13,12 +12,29 @@ class Main extends Component {
 
         this.state = { 
             characters: [],
+            pages: { previous: null, next: 'https://swapi.co/api/people/?page=1'},
         }
+        this.nextPage = this.nextPage.bind(this);
+        this.previousPage = this.previousPage.bind(this);
+        this.renderPage = this.renderPage.bind(this);
+        this.adjustScrolling = this.adjustScrolling.bind(this);
     }
 
     componentWillMount(){
-        fetch('https://swapi.co/api/people/',
-        {
+        this.nextPage();
+    }
+    
+    nextPage(){
+        if(this.state.pages.next) this.renderPage(this.state.pages.next)
+    }
+    
+    previousPage(){
+        if(this.state.pages.previous) this.renderPage(this.state.pages.previous)
+    }
+    
+    renderPage(url){
+        fetch(url,
+            {
             method: 'GET',
             headers: {
                 'Accept' : 'application/json'
@@ -27,37 +43,39 @@ class Main extends Component {
         .then(res => res.json())
         .then(people => {
             // localStorage.setItem('characters', JSON.stringify(people));
-            this.setState({characters: people.results});
+            let characters = people.results;
+            let { next, previous } = people;
+            this.setState({characters, pages: { previous, next } });
         })
         .catch(err => {
             console.log("Something went wrong.", err);
         });
     }
-
-    render() {
+        
+    adjustScrolling(){
         document.body.style.overflow = "visible";
         document.body.style.overflowX = "hidden";
-        if(!this.state.characters) return(<div></div>);
-        else{
-            return (
-                <main className="row">
-
-                    <section className="col-sm-12">
-                        <div id="reset-button">
-                            <Link to="/" className="btn btn-small btn-danger pull-left">RESET</Link>
-                        </div>
-                        <img src={swarsLogo} className="header__logo"></img>
-                    </section>
-
-                    <Timer />
-
-                    <Deck characters={this.state.characters}/>
-
-                </main>
-            );
-        }
-
     }
+
+    render() {
+    this.adjustScrolling();
+
+    if(!this.state.characters) return(<div></div>);
+    return (
+        <main className="row">
+
+            <section className="col-sm-12">
+                <img src={swarsLogo} className="header__logo"></img>
+            </section>
+
+            <Timer />
+
+            <Deck characters={this.state.characters} next={this.nextPage} previous={this.previousPage}/>
+
+        </main>
+    );
+    }
+
 }
 
 export default Main;

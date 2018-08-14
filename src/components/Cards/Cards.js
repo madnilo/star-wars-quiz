@@ -12,11 +12,15 @@ export default class Cards extends React.Component {
     }
 
     render() {
+        let url = this.props.charInfo.url.split('/');
+        let image = `${url[url.length - 2]}.jpg`;
         return (
             <React.Fragment>
                 <div className="card-wrapper col-sm-6 col-md-4 col-lg-2">
                     <div className="card">
-                        <div className="card__image"></div>
+                        <div className="card__image">
+                            <img className="card__image--img" src={require(`../../assets/img/characters/${image}`)}/>
+                        </div>
                         <div className="card__unit-stats clearfix">
                             <a href="http://google.com">
                                 <div className="one-third">

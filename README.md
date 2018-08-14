@@ -23,6 +23,9 @@ Although there is really only a single important route, which is the main page r
 
 Google Search API was consumed to get the character images for the game. Also the star wars api (swapi.co) was consumed to get characters, and its information.
 
+### Images
+The original idea was to use google's json custom search api for finding the images, but the process of making the search for the perfect image for every character was painful and inaccurate. Since the avatars are a crucial part of the game, those were included within the assets folder.
+
 ### How to run the app
 
 1. Download or clone the repo

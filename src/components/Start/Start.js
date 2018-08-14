@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 
 import swarsLogo from '../../static/img/swars-logo.svg';
 import './Start.css';
@@ -11,6 +12,7 @@ class Start extends Component {
     }
 
     render() {
+        document.body.style.overflow = "hidden";
         return (
             <div>
                 <div className="container">
@@ -19,7 +21,8 @@ class Start extends Component {
                     </div>
                     
                     <div className="start-button">
-                        <button className='btn btn-warning btn-lg'>Start Quiz</button>
+                        <Link className='btn btn-warning btn-lg' to='/quiz'>Start Quiz</Link>
+                        {/* <button className='btn btn-warning btn-lg'>Start Quiz</button> */}
                     </div>
 
                     <div className="fade"></div>

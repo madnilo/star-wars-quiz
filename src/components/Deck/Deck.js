@@ -19,7 +19,7 @@ export default class Deck extends React.Component {
             <React.Fragment>
                 <section className="cards-panel col-sm-12">
                     {this.props.characters.slice(0,12).map(item => (   
-                        <Cards />
+                        <Cards key={item.url}/>
                     ))}
                 </section>
             </React.Fragment>

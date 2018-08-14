@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 
 import Deck from '../Deck/Deck';
 import Timer from '../Timer/Timer';
@@ -42,6 +43,9 @@ class Main extends Component {
                 <main className="row">
 
                     <section className="col-sm-12">
+                        <div id="reset-button">
+                            <Link to="/" className="btn btn-small btn-danger pull-left">RESET</Link>
+                        </div>
                         <img src={swarsLogo} className="header__logo"></img>
                     </section>
 

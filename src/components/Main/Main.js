@@ -12,6 +12,7 @@ class Main extends Component {
 
         this.state = { 
             characters: [],
+            playedCharacters: [],
             pages: { previous: null, next: 'https://swapi.co/api/people/?page=1'},
         }
         this.nextPage = this.nextPage.bind(this);

@@ -34,6 +34,8 @@ class Main extends Component {
     }
 
     render() {
+        document.body.style.overflow = "visible";
+        document.body.style.overflowX = "hidden";
         if(!this.state.characters) return(<div></div>);
         else{
             return (

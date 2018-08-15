@@ -2,3 +2,54 @@
     background-color: #111111;
     color: #ffe81f;
 }
+.card {
+    width: 100%;
+    height: auto;
+    border-radius: 5px;
+    position: relative;
+    text-align: center;
+    box-shadow: -1px 15px 30px -12px black;
+    margin-bottom: 10px;
+}
+.card__image {
+    position: relative;
+    width: inherit;
+    height: inherit;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+}
+.card__image--img{
+    width: inherit;
+    height: inherit;
+}
+.card__unit-stats {
+    background: #111111;
+    font-weight: 700;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+}
+.card__unit-stats a{
+    color: #ffe81f;
+}
+.card__unit-stats a:hover{
+    color: #ffe81f;
+}
+.card__unit-stats .half {
+    border-right: 1px solid #333333;
+    width: 50%;
+    float: left;
+    padding: 10px 15px;
+}
+.card__unit-stats .stat {
+    position: relative;
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+.card__unit-stats .stat-value {
+    text-transform: uppercase;
+    font-weight: 400;
+    font-size: 12px;
+}
+.card__unit-stats .no-border {
+    border-right: none;
+} 

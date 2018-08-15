@@ -20,10 +20,6 @@ export default class Timer extends React.Component {
         this.timer();
     }
 
-    componentWillUnmount(){
-        setInterval(()=>{}, 2000);
-    }
-
     addMinutes(date, minutes) {
         return new Date(date.getTime() + minutes*60000);
     }
@@ -40,7 +36,7 @@ export default class Timer extends React.Component {
             let seconds = Math.floor((distance % (1000 * 60)) / 1000);
             
            
-            this.setState({ countdown: `${minutes}min and ${seconds}s left`})
+            this.setState({ countdown: `0${minutes}:${seconds.toString().length < 2 ? '0'+seconds : seconds}`})
             
             if(minutes <= 0 && seconds <= 0){
                 this.props.endGame();

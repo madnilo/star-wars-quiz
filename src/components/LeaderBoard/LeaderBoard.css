@@ -1,0 +1,30 @@
+
+
+  .lb-title__text{
+      font-size: 40px;
+      font-weight: 600;
+  }
+
+  .lb-title__subtext{
+      font-size: 20px;
+      font-weight: 500;
+  }
+
+  .lb-form{
+      margin-top: 20px;
+  }
+
+  .lb-table{
+      width: 50%;
+      height: auto;
+      margin:auto;
+      font-size: 20px;
+  }
+  td{
+      padding-bottom: 10px;
+  }
+  th{
+      font-size: 30px;
+      font-weight: 600;
+      padding: 20px 0px;
+  }

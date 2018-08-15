@@ -3,7 +3,6 @@ import { Route } from 'react-router-dom';
 
 import Main from './components/Main/Main';
 import Start from './components/Start/Start';
-import LeaderBoard from './components/LeaderBoard/LeaderBoard';
 import './App.css';
 
 class App extends Component {

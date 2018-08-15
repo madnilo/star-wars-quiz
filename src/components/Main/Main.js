@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import Deck from '../Deck/Deck';
 import Timer from '../Timer/Timer';
 import Score from '../Score/Score';
+import LeaderBoard from '../LeaderBoard/LeaderBoard';
 import './Main.css';
 import swarsLogo from '../../assets/img/swars-logo.svg';
 
@@ -12,6 +13,7 @@ class Main extends Component {
         super(props);
 
         this.state = { 
+            gameOver: false,
             characters: [],
             matchedCharacters: [],
             score: 0,
@@ -23,6 +25,7 @@ class Main extends Component {
         this.renderPage = this.renderPage.bind(this);
         this.adjustScrolling = this.adjustScrolling.bind(this);
         this.addNewMatchedCharacter = this.addNewMatchedCharacter.bind(this);
+        this.endGame = this.endGame.bind(this);
     }
 
     componentWillMount(){
@@ -70,9 +73,14 @@ class Main extends Component {
         this.setState({ matchedCharacters, score });
     }
 
+    endGame(){
+        this.setState({ gameOver: true });
+    }
+
     render() {
     if(!this.state.characters) return(<div></div>);
-        
+    if(this.state.gameOver) return <LeaderBoard score={this.state.score} />;
+
     const { score, timer, characters, matchedCharacters } = this.state;
     return (
         <main className="row">
@@ -82,7 +90,7 @@ class Main extends Component {
             </section>
             <section className="col-sm-6">
                 <div className="col-sm-6">
-                    <Timer timer={timer} />
+                    <Timer timer={timer} endGame={this.endGame}/>
                 </div>
                 <div className="col-sm-6">
                     <Score score={score} />

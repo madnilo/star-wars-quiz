@@ -6,7 +6,9 @@ import { Link } from 'react-router-dom';
 import Cards from '../Cards/Cards';
 import './Deck.css';
 
-const propTypes = {};
+const propTypes = {
+    characters: PropTypes.array.isRequired
+};
 
 const defaultProps = {};
 
@@ -17,6 +19,10 @@ export default class Deck extends React.Component {
     }
 
     render() {
+        const { matchedCharacters, addNewMatchedCharacter, characters } = this.props;
+        console.log(matchedCharacters);
+        console.log(characters);
+        console.log(this.props);
         return (
             <React.Fragment>
                 <section className="cards-panel col-sm-12">
@@ -25,9 +31,11 @@ export default class Deck extends React.Component {
                         <button onClick={this.props.next} className="btn btn-small btn-warning pull-right"><span className="glyphicon glyphicon-chevron-right"></span></button>
                         <button onClick={this.props.previous} className="btn btn-small btn-warning pull-right"><span className="glyphicon glyphicon-chevron-left"></span></button>
                     </div>
-                    {this.props.characters.map(item => (   
-                        <Cards key={item.url} charInfo={item}/>
-                    ))}
+                    {characters.map(item => {
+                        let matched = matchedCharacters.filter(char => char == item.name).length > 0;
+                        return (<Cards key={item.url} charInfo={item} matched={matched} addNewMatchedCharacter={addNewMatchedCharacter}/>);
+                    }
+                    )}
                 </section>
             </React.Fragment>
         );

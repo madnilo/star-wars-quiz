@@ -4,7 +4,9 @@ import Modal from 'react-responsive-modal';
 
 import './Cards.css';
 
-const propTypes = {};
+const propTypes = {
+    charInfo: PropTypes.object.isRequired,
+};
 
 const defaultProps = {};
 
@@ -12,7 +14,11 @@ export default class Cards extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
+            matched: false,
+            showInput: false,
+            guess: '',
             visibleInfo: false,
+            viewedInfo: false,
             homeworld: {},
             films: [],
             species: {},
@@ -28,6 +34,12 @@ export default class Cards extends React.Component {
         this.getFilms = this.getFilms.bind(this);
         this.getStarships = this.getStarships.bind(this);
         this.getVehicles = this.getVehicles.bind(this);
+        this.handleChange = this.handleChange.bind(this);
+        this.showInput = this.showInput.bind(this);
+    }
+
+    componentWillMount(){
+        this.setState({ matched: this.props.matched });
     }
 
     fetchData(url){
@@ -58,6 +70,7 @@ export default class Cards extends React.Component {
     }
 
     getFilms(){
+        this.setState({ films:[] });
         this.props.charInfo.films.map(film => {
             this.fetchData(film)
             .then(film => {
@@ -70,6 +83,7 @@ export default class Cards extends React.Component {
     }
 
     getVehicles(){
+        this.setState({ vehicles:[] });
         this.props.charInfo.vehicles.map(vehicle => {
             this.fetchData(vehicle)
             .then(vehicle => {
@@ -82,6 +96,7 @@ export default class Cards extends React.Component {
     }
 
     getStarships(){
+        this.setState({ starships:[] });
         this.props.charInfo.starships.map(starship => {
             this.fetchData(starship)
             .then(starship => {
@@ -99,32 +114,74 @@ export default class Cards extends React.Component {
         this.getFilms();
         this.getStarships();
         this.getVehicles();
-        this.setState({ visibleInfo: true })
+        this.setState({ visibleInfo: true, viewedInfo: true })
     }
 
     hideInfo(){
         this.setState({ visibleInfo: false })
     }
 
+    handleChange(event){
+        if(this.state.matched) return;
+        this.setState({guess: event.target.value}, () => this.checkGuess())
+        
+    }
+
+    showInput(){
+        const show = this.state.showInput;
+        this.setState({showInput: !show});
+    }
+
+    checkGuess(){
+        const { guess, charInfo, viewedInfo } = this.state;
+        const { name } = this.props.charInfo;
+        if(!guess || !name) return;
+        if(guess.toUpperCase().trim() == name.toUpperCase().trim() || guess.toUpperCase().trim() === name.substring(0, name.indexOf(' ')).toUpperCase().trim()){
+            console.log("acertoooou");
+            this.props.addNewMatchedCharacter(name, viewedInfo ? 5 : 10);
+            this.setState({ matched: true });
+        }
+    }
+
     render() {
         const url = this.props.charInfo.url.split('/');
         const image = `${url[url.length - 2]}.jpg`;
         const { height, mass, hair_color, skin_color, eye_color, birth_year, gender } = this.props.charInfo;
-        const { homeworld, species, films, starships, vehicles } = this.state;
+        const { homeworld, species, films, starships, vehicles, showInput, matched } = this.state;
         return (
             <React.Fragment>
                 <div className="col-sm-6 col-md-4 col-lg-2">
                     <div className="card">
                         <div className="card__image">
                             <img className="card__image--img" src={require(`../../assets/img/characters/${image}`)}/>
+                            { showInput 
+                            ?
+                                <div className="card__image--input-box">
+                                    <input placeholder="Insert full or first name"
+                                    onChange={this.handleChange}
+                                    value={this.state.guess}/>
+                                </div>
+                                
+                            :
+                                null
+                            }
                         </div>
                         <div className="card__unit-stats clearfix">
-                            <a href="http://google.com">
+                            {matched 
+                            ?
+                            <div className="half">
+                                <div className="stat"><span className="glyphicon glyphicon-ok"></span></div>
+                                <div className="stat-value">Answered</div>
+                            </div>
+                            :
+                            <a onClick={this.showInput}>
                                 <div className="half">
                                     <div className="stat">?</div>
                                     <div className="stat-value">Answer</div>
                                 </div>
                             </a>
+                            }
+                            
                             <a onClick={this.showInfo}>
                                 <div className="half no-border">
                                     <div className="stat">...</div>

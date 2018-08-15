@@ -137,7 +137,6 @@ export default class Cards extends React.Component {
         const { name } = this.props.charInfo;
         if(!guess || !name) return;
         if(guess.toUpperCase().trim() == name.toUpperCase().trim() || guess.toUpperCase().trim() === name.substring(0, name.indexOf(' ')).toUpperCase().trim()){
-            console.log("acertoooou");
             this.props.addNewMatchedCharacter(name, viewedInfo ? 5 : 10);
             this.setState({ matched: true });
         }

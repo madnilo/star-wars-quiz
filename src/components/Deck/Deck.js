@@ -20,9 +20,6 @@ export default class Deck extends React.Component {
 
     render() {
         const { matchedCharacters, addNewMatchedCharacter, characters } = this.props;
-        console.log(matchedCharacters);
-        console.log(characters);
-        console.log(this.props);
         return (
             <React.Fragment>
                 <section className="cards-panel col-sm-12">

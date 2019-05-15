@@ -1,23 +1,219 @@
-import React, { Component } from 'react';
-import { BrowserRouter, Route } from 'react-router-dom';
+import React from "react";
+import { BrowserRouter, Route } from "react-router-dom";
+import { createGlobalStyle } from "styled-components";
+import Main from "./components/Main/Main";
+import Start from "./components/Start/Start";
 
-import Main from './components/Main/Main';
-import Start from './components/Start/Start';
-import './App.css';
-
-class App extends Component {
-  render() {
-    return (
-      <div className="App">
-        <BrowserRouter>
-          <div>
-            <Route exact path='/' component={Start} />
-            <Route path='/quiz' component={Main} />
-          </div>
-        </BrowserRouter>
-      </div>
-    );
-  }
-}
+const App = React.memo(() => {
+  return (
+    <div className="App">
+      <GlobalStyles />
+      <BrowserRouter>
+        <div>
+          <Route exact path="/" component={Start} />
+          <Route path="/quiz" component={Main} />
+        </div>
+      </BrowserRouter>
+    </div>
+  );
+});
 
 export default App;
+
+const GlobalStyles = createGlobalStyle`
+  body {
+    margin: 0;
+    padding: 0;
+    font-family: sans-serif;
+  }
+  .App {
+  text-align: center;
+  }
+  body {
+    font-family: 'Roboto', sans-serif;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    background: #000 url(./assets/img/bg.jpg);
+    width: 100%;
+    height: 100%;
+    color: #cccccc;
+  }
+
+  /* Buttons re-style */
+  .true-center {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+    height: 106px;
+    width: 690px;
+  }
+  .btn {
+    position: relative;
+    border: 0 !important;
+    cursor: pointer;
+    -webkit-font-smoothing: antialiased;
+    font-weight: bold !important;
+    -webkit-border-radius: 10px;
+    -webkit-background-clip: padding-box;
+    -moz-border-radius: 10px;
+    -moz-background-clip: padding;
+    border-radius: 10px;
+    background-clip: padding-box;
+    -webkit-transition: all 50ms ease;
+    -moz-transition: all 50ms ease;
+    -o-transition: all 50ms ease;
+    transition: all 50ms ease;
+    border: 0;
+    text-shadow: 0px 1px 0px #999999;
+    background-color: #cccccc;
+    -webkit-box-shadow: 0px 6px 0px #999999;
+    -moz-box-shadow: 0px 6px 0px #999999;
+    box-shadow: 0px 6px 0px #999999;
+  }
+  .btn:focus {
+    outline: 0;
+  }
+  .btn:hover {
+    top: 2px;
+  }
+  .btn:active {
+    top: 6px;
+  }
+  .btn:hover {
+    border: 0;
+    background-color: #d9d9d9 !important;
+    -webkit-box-shadow: 0px 4px 0px #999999;
+    -moz-box-shadow: 0px 4px 0px #999999;
+    box-shadow: 0px 4px 0px #999999;
+  }
+  .btn:active {
+    -webkit-box-shadow: inset 0px 3px 0px #999999;
+    -moz-box-shadow: inset 0px 3px 0px #999999;
+    box-shadow: inset 0px 3px 0px #999999;
+  }
+  .btn-primary {
+    border: 0;
+    text-shadow: 0px 1px 0px #3071a9;
+    background-color: #428bca;
+    -webkit-box-shadow: 0px 6px 0px #3071a9;
+    -moz-box-shadow: 0px 6px 0px #3071a9;
+    box-shadow: 0px 6px 0px #3071a9;
+  }
+  .btn-primary:hover {
+    border: 0;
+    background-color: #5697d0 !important;
+    -webkit-box-shadow: 0px 4px 0px #3071a9;
+    -moz-box-shadow: 0px 4px 0px #3071a9;
+    box-shadow: 0px 4px 0px #3071a9;
+  }
+  .btn-primary:active {
+    -webkit-box-shadow: inset 0px 3px 0px #3071a9;
+    -moz-box-shadow: inset 0px 3px 0px #3071a9;
+    box-shadow: inset 0px 3px 0px #3071a9;
+  }
+  .btn-success {
+    border: 0;
+    text-shadow: 0px 1px 0px #449d44;
+    background-color: #5cb85c;
+    -webkit-box-shadow: 0px 6px 0px #449d44;
+    -moz-box-shadow: 0px 6px 0px #449d44;
+    box-shadow: 0px 6px 0px #449d44;
+  }
+  .btn-success:hover {
+    border: 0;
+    background-color: #6ec06e !important;
+    -webkit-box-shadow: 0px 4px 0px #449d44;
+    -moz-box-shadow: 0px 4px 0px #449d44;
+    box-shadow: 0px 4px 0px #449d44;
+  }
+  .btn-success:active {
+    -webkit-box-shadow: inset 0px 3px 0px #449d44;
+    -moz-box-shadow: inset 0px 3px 0px #449d44;
+    box-shadow: inset 0px 3px 0px #449d44;
+  }
+  .btn-info {
+    border: 0;
+    text-shadow: 0px 1px 0px #31b0d5;
+    background-color: #5bc0de;
+    -webkit-box-shadow: 0px 6px 0px #31b0d5;
+    -moz-box-shadow: 0px 6px 0px #31b0d5;
+    box-shadow: 0px 6px 0px #31b0d5;
+  }
+  .btn-info:hover {
+    border: 0;
+    background-color: #70c8e2 !important;
+    -webkit-box-shadow: 0px 4px 0px #31b0d5;
+    -moz-box-shadow: 0px 4px 0px #31b0d5;
+    box-shadow: 0px 4px 0px #31b0d5;
+  }
+  .btn-info:active {
+    -webkit-box-shadow: inset 0px 3px 0px #31b0d5;
+    -moz-box-shadow: inset 0px 3px 0px #31b0d5;
+    box-shadow: inset 0px 3px 0px #31b0d5;
+  }
+  .btn-warning {
+    border: 0;
+    text-shadow: 0px 1px 0px #ec971f;
+    background-color: #f0ad4e;
+    -webkit-box-shadow: 0px 6px 0px #ec971f;
+    -moz-box-shadow: 0px 6px 0px #ec971f;
+    box-shadow: 0px 6px 0px #ec971f;
+  }
+  .btn-warning:hover {
+    border: 0;
+    background-color: #f2b866 !important;
+    -webkit-box-shadow: 0px 4px 0px #ec971f;
+    -moz-box-shadow: 0px 4px 0px #ec971f;
+    box-shadow: 0px 4px 0px #ec971f;
+  }
+  .btn-warning:active {
+    -webkit-box-shadow: inset 0px 3px 0px #ec971f;
+    -moz-box-shadow: inset 0px 3px 0px #ec971f;
+    box-shadow: inset 0px 3px 0px #ec971f;
+  }
+  .btn-danger {
+    border: 0;
+    text-shadow: 0px 1px 0px #c9302c;
+    background-color: #d9534f;
+    -webkit-box-shadow: 0px 6px 0px #c9302c;
+    -moz-box-shadow: 0px 6px 0px #c9302c;
+    box-shadow: 0px 6px 0px #c9302c;
+  }
+  .btn-danger:hover {
+    border: 0;
+    background-color: #de6764 !important;
+    -webkit-box-shadow: 0px 4px 0px #c9302c;
+    -moz-box-shadow: 0px 4px 0px #c9302c;
+    box-shadow: 0px 4px 0px #c9302c;
+  }
+  .btn-danger:active {
+    -webkit-box-shadow: inset 0px 3px 0px #c9302c;
+    -moz-box-shadow: inset 0px 3px 0px #c9302c;
+    box-shadow: inset 0px 3px 0px #c9302c;
+  }
+  .btn-link {
+    text-shadow: none;
+    background: none !important;
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none;
+  }
+  .btn-link:hover {
+    border: 0;
+    background: none !important;
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none;
+    top: 0;
+  }
+  .btn-link:active {
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none;
+    top: 0;
+  }
+
+  `;

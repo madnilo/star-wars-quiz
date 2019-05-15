@@ -1,23 +1,22 @@
 {
-  "name": "swars-quiz",
+  "name": "star-wars-quiz",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "ajv": "^6.5.2",
-    "enzyme": "^3.4.1",
-    "enzyme-adapter-react-16": "^1.2.0",
     "react": "16.8.6",
     "react-dom": "16.8.6",
     "react-responsive-modal": "^3.2.0",
     "react-router": "^4.3.1",
     "react-router-dom": "^4.3.1",
     "react-scripts": "3.0.1",
-    "react-test-renderer": "^16.4.2"
+    "styled-components": "4.2.0"
   },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
-  }
+  },
+  "keywords": [],
+  "description": "Old quiz game I made last year, and am refactoring now."
 }
